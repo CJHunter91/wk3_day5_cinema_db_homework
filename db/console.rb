@@ -31,6 +31,7 @@ ticket2.update
 
 customer2.name = "John"
 customer2.update
+customer2.delete
 
 film2.title = "Lion King"
 film2.update
