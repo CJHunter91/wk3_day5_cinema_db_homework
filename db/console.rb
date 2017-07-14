@@ -48,7 +48,8 @@ film2.update
 
 screening1 = Screening.new({"screening" => "18:00", "film_id" => raiders.id})
 screening1.save
-screening1.delete
+screening1.screening = "19:00"
+screening1.update
 
 customer2.show_films
 film2.show_customers

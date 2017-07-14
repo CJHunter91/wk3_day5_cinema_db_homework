@@ -1,7 +1,9 @@
 require_relative('../db/sql_runner')
 
 class Screening
-
+  attr_reader :id
+  attr_accessor :screening, :film_id
+  
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @screening = options['screening']
@@ -15,6 +17,13 @@ class Screening
     ('#{@screening}', #{@film_id})
     RETURNING id;"
     @id = SqlRunner.run(sql)[0]['id'].to_i 
+  end
+
+  def update
+    sql = "UPDATE screenings SET
+    (screening, film_id) =
+    ('#{@screening}', #{@film_id});"
+    SqlRunner.run(sql)
   end
 
   def delete
