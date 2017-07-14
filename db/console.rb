@@ -35,6 +35,8 @@ customer2.update
 film2.title = "Lion King"
 film2.update
 
+
 customer2.show_films
+film2.show_customers
 binding.pry
 nil
