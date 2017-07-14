@@ -33,6 +33,13 @@ class Film
     SqlRunner.run("DELETE FROM films WHERE id = #{@id}")
   end
 
+  def how_many_customers
+    #count is postgres' built in function returns hash with 'count' => 'number' 
+    sql = "SELECT count(*) FROM tickets 
+        WHERE film_id = #{@id};"
+    return SqlRunner.run(sql)[0]['count'].to_i
+  end
+
   def show_customers
     sql = "SELECT customers.* FROM customers
     INNER JOIN tickets

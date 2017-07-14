@@ -30,6 +30,7 @@ class Customer
   end
 
   def how_many_tickets
+    #count is postgres' built in function returns hash with 'count' => 'number' 
     sql = "SELECT count(*) FROM tickets 
         WHERE customer_id = #{@id};"
     return SqlRunner.run(sql)[0]['count'].to_i

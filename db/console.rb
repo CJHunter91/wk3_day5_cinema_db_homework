@@ -13,6 +13,8 @@ customer_chris.save
 customer2 = Customer.new({"name" => "Rick", "funds" => 50})
 customer2.save
 
+customer3 = Customer.new({"name" => "Hobs", "funds" => 40})
+customer3.save
 
 
 raiders = Film.new({"title" => "Raiders of the lost ark", "price" => 13})
@@ -20,11 +22,18 @@ raiders.save
 film2 = Film.new({"title" => "Robocop", "price" => 12})
 film2.save
 
+
+
 c_ticket_raiders = Ticket.new({"customer_id" =>customer_chris.id, "film_id" => raiders.id})
 c_ticket_raiders.save
 
 ticket2 = Ticket.new({"customer_id" =>customer2.id, "film_id" => film2.id})
 ticket2.save
+
+ticket3 = Ticket.new({"customer_id" =>customer3.id, "film_id" => raiders.id})
+ticket3.save
+ticket4 = Ticket.new({"customer_id" =>customer3.id, "film_id" => film2.id})
+ticket4.save
 
 ticket2.customer_id = customer_chris.id
 ticket2.update
