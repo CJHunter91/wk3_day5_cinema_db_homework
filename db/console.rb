@@ -3,6 +3,10 @@ require_relative('../models/ticket')
 require_relative('../models/film')
 require('pry')
 
+Ticket.delete_all
+Customer.delete_all
+Film.delete_all
+
 customer_chris = Customer.new({"name" => "Chris", "funds" => 100})
 customer_chris.save
 
