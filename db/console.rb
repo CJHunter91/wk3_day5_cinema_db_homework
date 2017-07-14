@@ -35,6 +35,5 @@ customer2.update
 
 film2.title = "Lion King"
 film2.update
-film2.delete
 binding.pry
 nil
