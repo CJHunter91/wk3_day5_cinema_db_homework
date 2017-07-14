@@ -19,6 +19,7 @@ class Screening
     @id = SqlRunner.run(sql)[0]['id'].to_i 
   end
 
+
   def update
     sql = "UPDATE screenings SET
     (screening, film_id) =
