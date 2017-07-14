@@ -11,5 +11,8 @@ raiders = Film.new({"title" => "Raiders of the lost ark", "price" => 13})
 
 raiders.save
 
+c_ticket_raiders = Ticket.new({"customer_id" =>customer_chris.id, "film_id" => raiders.id})
+
+c_ticket_raiders.save
 binding.pry
 nil
