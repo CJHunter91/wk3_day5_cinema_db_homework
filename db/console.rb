@@ -23,12 +23,11 @@ film2.save
 c_ticket_raiders = Ticket.new({"customer_id" =>customer_chris.id, "film_id" => raiders.id})
 c_ticket_raiders.save
 
-ticket2 = Ticket.new({"customer_id" =>customer2.id, "film_id" => raiders.id})
+ticket2 = Ticket.new({"customer_id" =>customer2.id, "film_id" => film2.id})
 ticket2.save
 
 ticket2.customer_id = customer_chris.id
 ticket2.update
-ticket2.delete
 
 customer2.name = "John"
 customer2.update
