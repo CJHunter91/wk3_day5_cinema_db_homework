@@ -29,6 +29,12 @@ class Customer
     SqlRunner.run(sql)
   end
 
+  def how_many_tickets
+    sql = "SELECT count(*) FROM tickets 
+        WHERE customer_id = #{@id};"
+    return SqlRunner.run(sql)[0]['count'].to_i
+  end
+
   def delete
     SqlRunner.run("DELETE FROM customers WHERE id = #{@id}")
   end
