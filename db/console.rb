@@ -1,6 +1,7 @@
 require_relative('../models/customer')
 require_relative('../models/ticket')
 require_relative('../models/film')
+require_relative('../models/screening')
 require('pry')
 
 Ticket.delete_all
@@ -44,6 +45,8 @@ customer2.update
 film2.title = "Lion King"
 film2.update
 
+screening1 = Screening.new({"screening" => "18:00", "film_id" => raiders.id})
+screening1.save
 
 customer2.show_films
 film2.show_customers
