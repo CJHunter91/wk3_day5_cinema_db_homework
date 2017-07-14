@@ -19,6 +19,14 @@ class Film
      @id = SqlRunner.run(sql)[0]['id'].to_i
   end
 
+  def update
+    sql = "UPDATE films SET
+    (title, price) =
+    ('#{@title}', #{@price})
+    WHERE id = #{@id}"
+    SqlRunner.run(sql)
+  end
+
 
 
 

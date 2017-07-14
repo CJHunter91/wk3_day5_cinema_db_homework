@@ -16,6 +16,15 @@ class Ticket
      @id = SqlRunner.run(sql)[0]['id'].to_i
   end
 
+  def update
+    sql = "UPDATE tickets SET
+    (customer_id, film_id) =
+    ('#{@customer_id}', #{@film_id})
+    WHERE id = #{@id}"
+    SqlRunner.run(sql)
+  end
+
+
 
 
 
