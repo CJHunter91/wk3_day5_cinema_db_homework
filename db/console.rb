@@ -47,7 +47,10 @@ film2.title = "Lion King"
 film2.update
 
 screening1 = Screening.new({"screening" => "18:00", "film_id" => raiders.id})
+screening2 = Screening.new({"screening" => "21:00", "film_id" => raiders.id})
 screening1.save
+screening2.save
+
 screening1.screening = "19:00"
 screening1.update
 
