@@ -28,6 +28,7 @@ ticket2.save
 
 ticket2.customer_id = customer_chris.id
 ticket2.update
+ticket2.delete
 
 customer2.name = "John"
 customer2.update
