@@ -1,5 +1,6 @@
 require_relative('../db/sql_runner')
 require_relative('film')
+require_relative('ticket')
 class Customer
 
   attr_reader :id
@@ -29,15 +30,23 @@ class Customer
     SqlRunner.run(sql)
   end
 
+  def buy_ticket(film_obj)
+    #create ticket
+    Ticket.new(
+      {'customer_id' => @id,
+        'film_id' => film_obj.id
+      })
+    #remove film price from funds
+    @funds -= film_obj.price
+    #update customer in db
+    update()
+  end
+
   def how_many_tickets
     #count is postgres' built in function returns hash with 'count' => 'number' 
     sql = "SELECT count(*) FROM tickets 
         WHERE customer_id = #{@id};"
     return SqlRunner.run(sql)[0]['count'].to_i
-  end
-
-  def delete
-    SqlRunner.run("DELETE FROM customers WHERE id = #{@id}")
   end
 
   def show_films
@@ -47,6 +56,10 @@ class Customer
     WHERE
     customer_id = #{@id};"
     return Film.map_films(sql)
+  end
+
+  def delete
+    SqlRunner.run("DELETE FROM customers WHERE id = #{@id}")
   end
 
   def self.all
