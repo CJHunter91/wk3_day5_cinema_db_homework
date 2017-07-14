@@ -14,7 +14,14 @@ class Screening
     VALUES
     ('#{@screening}', #{@film_id})
     RETURNING id;"
-    return SqlRunner.run(sql)[0]['id']
+    @id = SqlRunner.run(sql)[0]['id'].to_i 
   end
 
+  def delete
+    SqlRunner.run("DELETE FROM screenings WHERE id = #{@id};")
+  end
+
+  def self.delete_all
+    SqlRunner.run("DELETE FROM screenings;")
+  end
 end
