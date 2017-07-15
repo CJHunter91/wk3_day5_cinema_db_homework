@@ -14,8 +14,8 @@ class Ticket
   end
 
   def save
-    screening()
     #create the screening object to return the asscociated film id
+    screening()
     sql = "INSERT INTO tickets
      (customer_id, film_id, screening_id) 
      VALUES

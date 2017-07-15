@@ -39,7 +39,7 @@ screening3.save
 c_ticket_raiders = Ticket.new({"customer_id" =>customer_chris.id, "screening_id" => screening1.id})
 c_ticket_raiders.save
 
-ticket2 = Ticket.new({"customer_id" =>customer2.id, "screening_id" => screening3.id})
+ticket2 = Ticket.new({"customer_id" =>customer2.id, "screening_id" => screening2.id})
 ticket2.save
 
 ticket3 = Ticket.new({"customer_id" =>customer3.id, "screening_id" => screening2.id})
@@ -58,5 +58,6 @@ ticket4.save
 
 # customer2.show_films
 # film2.show_customers
+Screening.popular_screen(raiders)
 binding.pry
 nil
