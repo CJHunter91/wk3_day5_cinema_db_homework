@@ -58,6 +58,6 @@ ticket4.save
 
 # customer2.show_films
 # film2.show_customers
-Screening.popular_screen(raiders)
+raiders.popular_screen()
 binding.pry
 nil
