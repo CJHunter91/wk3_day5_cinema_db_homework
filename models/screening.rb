@@ -8,11 +8,16 @@ class Screening
     @id = options['id'].to_i if options['id']
     @screening = options['screening']
     @film_id = options['film_id']
-    @limit = 60
+    @limit = 3
   end
 
   def fully_booked?
-
+    #check the number of tickets for the given screening and return true if fully booked
+    sql = "SELECT COUNT(screenings.*) FROM screenings
+    INNER JOIN tickets
+    ON screenings.id = tickets.screening_id
+    WHERE screening_id = #{@id};"
+    (SqlRunner.run(sql)[0]['count'].to_i) + 1 >= @limit ? true : false
   end
 
   def save

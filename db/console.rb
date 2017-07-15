@@ -58,6 +58,6 @@ ticket4.save
 
 # customer2.show_films
 # film2.show_customers
-raiders.popular_screen()
+screening2.fully_booked?
 binding.pry
 nil
