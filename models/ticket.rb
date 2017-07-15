@@ -14,8 +14,13 @@ class Ticket
   end
 
   def save
-    #create the screening object to return the asscociated film id
-    screening()
+    #creates the screening object to return the asscociated film id
+
+    screening_obj = screening()
+    error = "Sorry this screening is sold out!"
+    #raises an argument error if the screening is sold out.
+    return error if screening_obj.fully_booked?
+
     sql = "INSERT INTO tickets
      (customer_id, film_id, screening_id) 
      VALUES
@@ -47,11 +52,14 @@ class Ticket
   end
 
   def screening
-    #function returns the correct film id for the ticket using the screening object
+    #function updates the film id for the ticket using the screening object
     #This stops the need for giving ticket an extra parameter on init
-    sql = "SELECT film_id FROM screenings
+    sql = "SELECT * FROM screenings
     WHERE id = #{@screening_id}"
-    @film_id = Screening.map_screenings(sql)[0].film_id.to_i
+
+    screening_obj = Screening.map_screenings(sql)[0]
+    @film_id = screening_obj.film_id.to_i
+    return screening_obj
   end
 
   def self.map_tickets(sql)

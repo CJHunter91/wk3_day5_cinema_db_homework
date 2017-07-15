@@ -58,6 +58,7 @@ ticket4.save
 
 # customer2.show_films
 # film2.show_customers
-screening2.fully_booked?
-binding.pry
-nil
+# ticket5 = Ticket.new({"customer_id" =>customer3.id, "screening_id" => screening2.id})
+# ticket5.save
+# binding.pry
+# nil

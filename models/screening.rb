@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require('pry')
 
 class Screening
   attr_reader :id
@@ -13,11 +14,13 @@ class Screening
 
   def fully_booked?
     #check the number of tickets for the given screening and return true if fully booked
+
     sql = "SELECT COUNT(screenings.*) FROM screenings
     INNER JOIN tickets
     ON screenings.id = tickets.screening_id
     WHERE screening_id = #{@id};"
     (SqlRunner.run(sql)[0]['count'].to_i) + 1 >= @limit ? true : false
+    #can make the limit an optional paramater needs added to db table
   end
 
   def save
