@@ -60,5 +60,7 @@ ticket4.save
 # film2.show_customers
 # ticket5 = Ticket.new({"customer_id" =>customer3.id, "screening_id" => screening2.id})
 # ticket5.save
-# binding.pry
-# nil
+Ticket.popular_film
+raiders.popular_screen
+binding.pry
+nil

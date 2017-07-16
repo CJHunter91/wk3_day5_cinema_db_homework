@@ -14,6 +14,21 @@ class Film
     @price = options['price']
   end
 
+  def how_many_customers
+    #count is postgres' built in function returns hash with 'count' => 'number' 
+    sql = "SELECT count(*) FROM tickets 
+        WHERE film_id = #{@id};"
+    return SqlRunner.run(sql)[0]['count'].to_i
+  end
+
+  def show_customers
+    sql = "SELECT customers.* FROM customers
+    INNER JOIN tickets
+    ON customers.id = customer_id
+    WHERE film_id = #{@id};"
+    return Customer.map_customers(sql)
+  end
+
   def popular_screen
     #returns most popular screening time for given film
 
@@ -24,10 +39,10 @@ class Film
     WHERE tickets.film_id = #{@id};"
     film_screenings = Screening.map_screenings(sql)
     #iterates over film screenings and select the screening id with the most frequent time(most tickets)
-    return screen_frequency(film_screenings)
+    return item_frequency(film_screenings)
   end
 
-  def screen_frequency(array)
+  def item_frequency(array)
       #iterate through the array and create a hash with the freq of each item 
       new_hash = Hash.new(0)
       array.each{|item| new_hash[item.screening] += 1 }
@@ -58,20 +73,6 @@ class Film
     SqlRunner.run("DELETE FROM films WHERE id = #{@id}")
   end
 
-  def how_many_customers
-    #count is postgres' built in function returns hash with 'count' => 'number' 
-    sql = "SELECT count(*) FROM tickets 
-        WHERE film_id = #{@id};"
-    return SqlRunner.run(sql)[0]['count'].to_i
-  end
-
-  def show_customers
-    sql = "SELECT customers.* FROM customers
-    INNER JOIN tickets
-    ON customers.id = customer_id
-    WHERE film_id = #{@id};"
-    return Customer.map_customers(sql)
-  end
 
   def self.all
     sql = "SELECT * FROM films"

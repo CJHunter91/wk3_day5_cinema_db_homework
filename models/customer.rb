@@ -11,25 +11,7 @@ class Customer
     @name = options['name']
     @funds = options['funds']
   end
-
-
-  def save
-    sql = "INSERT INTO customers
-     (name, funds) 
-     VALUES
-     ('#{@name}', #{@funds}) 
-     RETURNING id;"
-     @id = SqlRunner.run(sql)[0]['id'].to_i
-  end
-
-  def update
-    sql = "UPDATE customers SET
-    (name, funds) =
-    ('#{@name}', #{@funds})
-    WHERE id = #{@id}"
-    SqlRunner.run(sql)
-  end
-
+  
   def buy_ticket(film_obj)
     #create ticket
     Ticket.new(
@@ -57,6 +39,25 @@ class Customer
     customer_id = #{@id};"
     return Film.map_films(sql)
   end
+
+
+  def save
+    sql = "INSERT INTO customers
+     (name, funds) 
+     VALUES
+     ('#{@name}', #{@funds}) 
+     RETURNING id;"
+     @id = SqlRunner.run(sql)[0]['id'].to_i
+  end
+
+  def update
+    sql = "UPDATE customers SET
+    (name, funds) =
+    ('#{@name}', #{@funds})
+    WHERE id = #{@id}"
+    SqlRunner.run(sql)
+  end
+
 
   def delete
     SqlRunner.run("DELETE FROM customers WHERE id = #{@id}")
